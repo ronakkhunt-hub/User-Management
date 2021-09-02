@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.home {
+  text-align: center;
+}
+.logout_button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  margin: 6px;
+  background-color: cornflowerblue;
+}

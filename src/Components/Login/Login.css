@@ -1,0 +1,19 @@
+.textField {
+  text-align: center;
+}
+
+form {
+  margin: 200px auto;
+}
+
+.emailField {
+  margin: 10px auto;
+}
+
+.passwordField {
+  margin: 10px auto;
+}
+
+.button {
+  margin: 15px auto;
+}
