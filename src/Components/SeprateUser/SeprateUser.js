@@ -1,30 +1,45 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useHistory, useParams } from 'react-router';
+import { getOneUser } from '../../utils/axiosApi'
 
 import "./SeprateUser.css"
 
-const SeprateUser = () => {
-    const location = useLocation();
-    const seprateId = location.pathname.substring(1);
+const SeprateUser = (props) => {
+    const [seprateUser, setSeprateUser] = useState("");
+    const { id } = useParams();
+    const history = useHistory();
 
-    const employee = useSelector(state => state.EmpReducer.list)
+    useEffect(() => {
+        if (props.location.state?.isFromParent) {
+            getSeprateUserData()
+        } else {
+            history.push(`/user`);
+        }
+    })
 
-    const seprateUser = employee.filter((user) => user.id === parseInt(seprateId))
+    async function getSeprateUserData() {
+        const userInfo = await getOneUser({
+            url: `api/getOne-user/${id}`,
+        });
+        setSeprateUser(userInfo.data.data);
+    }
+
+    // const employee = useSelector(state => state.EmpReducer.list)
+    // const seprateUser = employee.filter((user) => user.id === parseInt(seprateId))
 
     return (
         <>
-            {seprateUser && seprateUser.map((user, i) => (
-                <div key={i} className="containers">
+            <div className="main">
+                <div className="containers">
                     <div className="avatar-flip">
-                        <img src={user.profile} height="150" width="150" alt="Profile"></img>
+                        {/* <img src={seprateUser.profile} height="150" width="150" alt="Profile"></img> */}
                     </div>
-                    <h2 className="name">{user.firstName} {user.lastName}</h2>
-                    <h4>{user.email}</h4>
-                    <p>{user.description}</p>
-                    <p>{user.hobby}</p>
+                    <h2 className="name">{seprateUser.firstName} {seprateUser.lastName}</h2>
+                    <h4>{seprateUser.email}</h4>
+                    <p>{seprateUser.description}</p>
+                    <p>{seprateUser.hobby}</p>
                 </div>
-            ))}
+            </div>
         </>
     )
 }

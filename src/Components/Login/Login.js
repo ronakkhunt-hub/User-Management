@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import { Button, TextField } from '@material-ui/core';
-
+import { useHistory } from 'react-router';
 import './Login.css'
 import { Redirect, Route } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import { loginApi, validateUser } from '../../utils/axiosApi';
+import { Button, Col, Container, Form, FormControl, InputGroup, Row } from 'react-bootstrap';
 
-const user = {
-    email: 'ronakkhunt@gmail.com',
-    password: '123456'
-}
 
 function isLogin() {
     if (localStorage.getItem('loggedIn')) {
@@ -27,40 +25,76 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 const Login = () => {
-    const [email, SetEmailData] = useState("");
-    const [password, SetPasswordData] = useState("");
+    const history = useHistory();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    function handleLogin(e) {
+    async function handleLogin(e) {
         e.preventDefault();
-        if (email !== user.email) {
-            alert("Invalid Email");
-        } else if (password !== user.password) {
-            alert("Invalid Password");
+        const user = await validateUser({
+            url: 'api/getUser',
+        }, {
+            email,
+            password
+        });
+        const userData = user.data.data;
+        if (userData) {
+            if (email !== userData.email && password !== userData.password) {
+                toast('Invalid login credentials');
+            } else {
+                const login = await loginApi({
+                    url: 'auth/login-user',
+                }, {
+                    email,
+                    password
+                })
+                if (login) {
+                    localStorage.setItem('loggedIn', login.data.token);
+                    toast('LoggedIn successfully');
+                    setTimeout(() => {
+                        history.push("/");
+                    }, 5000);
+                }
+            }
         } else {
-            localStorage.setItem('loggedIn', true);
-            alert('login successfully')
+            toast('Invalid login credentials');
         }
     }
 
     return (
         <>
-            <form onSubmit={(e) => handleLogin(e)} autoComplete="off">
-                <div className="textField">
-                    <h3>Login Form</h3>
+            <ToastContainer />
+            <Container>
+                <Form onSubmit={(e) => handleLogin(e)} encType="multipart/form-data" autoComplete="off">
+                    <Row className="justify-content-md-left">
+                        <Col xs lg={4}>
+                            <h3 className="mt-5" >Login Form</h3>
+                            <InputGroup className="mt-3">
+                                <FormControl
+                                    placeholder="Email"
+                                    aria-label="Email"
+                                    aria-describedby="basic-addon1"
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                            </InputGroup>
+                            <InputGroup className="mt-3">
+                                <FormControl
+                                    placeholder="Password"
+                                    aria-label="Password"
+                                    aria-describedby="basic-addon1"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </InputGroup>
 
-                    <div className="emailField">
-                        <TextField placeholder="Email" onChange={(e) => SetEmailData(e.target.value)} variant="outlined" required />
-                    </div>
-
-                    <div className="passwordField">
-                        <TextField placeholder="Password" onChange={(e) => SetPasswordData(e.target.value)} variant="outlined" required />
-                    </div>
-
-                    <div className="button">
-                        <Button type="submit" variant="contained" color="primary">Submit</Button>
-                    </div>
-                </div>
-            </form>
+                            <div className="mt-3">
+                                <Button type="submit" className="btn btn-primary">Submit</Button>
+                            </div>
+                        </Col>
+                    </Row>
+                </Form>
+            </Container>
         </>
     )
 }

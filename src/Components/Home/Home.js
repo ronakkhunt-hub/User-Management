@@ -1,5 +1,6 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router';
+import HeaderLink from '../Header/Link';
 
 import './Home.css'
 
@@ -8,7 +9,7 @@ const Home = () => {
     let history = useHistory();
 
     function isLogin() {
-        if (localStorage.getItem('loggedIn', true)) {
+        if (localStorage.getItem('loggedIn')) {
             return true
         }
         return false
@@ -20,13 +21,17 @@ const Home = () => {
     }
 
     return (
-        <div className='home'>
-            <h1>Home Page</h1>
-            {isLogin() ?
-                <button className="logout_button" onClick={HandleLogout}>Logout</button>
-                : null
-            }
-        </div>
+        <>
+            <HeaderLink />
+            <div className='home'>
+                <h1>Home Page</h1>
+                {isLogin() ?
+                    <button className="logout_button" onClick={HandleLogout}>Logout</button>
+                    : null
+                }
+            </div>
+        </>
+
     )
 }
 
