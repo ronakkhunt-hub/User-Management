@@ -4,20 +4,18 @@
   box-sizing: border-box;
 }
 
-ul {
-  list-style: none;
-  text-align: center;
+.homeLink {
+  font-size: 22px;
+  font-weight: 600;
+  font-family: cursive;
+   color: #255397;
+   text-decoration: none;
 }
 
-ul li {
-  display: inline-block;
-  background-color: cornflowerblue;
-  padding: 10px 20px;
-  margin: 6px;
-}
-
-a li {
-  border: none;
-  color: white;
+.link {
+  color: rgb(117, 116, 116);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: cursive;
   text-decoration: none;
 }

@@ -10,9 +10,19 @@
 }
 
 .label {
-  position: absolute;
-  margin-top: 5px;
   color: white !important;
-  border-radius: 100%;
-  background-color: green;
+  background-color: rgb(34, 61, 110) !important;
+}
+
+.Actionbutton {
+  position: absolute;
+  margin-right: 10px !important;
+}
+
+@media screen and (min-width: 1080px){
+  .label {
+    width: 60px;
+    height: 30px;
+    margin: 5px 15px;
+  }
 }

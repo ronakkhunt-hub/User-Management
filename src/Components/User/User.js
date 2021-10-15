@@ -1,21 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
+import { Modal, Table } from "react-bootstrap";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import CreateIcon from '@material-ui/icons/Create';
-import DeleteIcon from '@material-ui/icons/Delete';
+import * as Icon from 'react-bootstrap-icons';
+// import TextField from "@material-ui/core/TextField";
+// import Dialog from "@material-ui/core/Dialog";
+// import DialogActions from "@material-ui/core/DialogActions";
+// import DialogContent from "@material-ui/core/DialogContent";
+// import DialogTitle from "@material-ui/core/DialogTitle";
 
-// import { addEmployee, updateEmployee, deleteEmployee } from "../../Actions/Index";
 import "./User.css"
 import HeaderLink from "../Header/Link";
 import { createApi, deleteApi, getUsers, updateApi } from "../../utils/axiosApi";
@@ -32,15 +25,7 @@ const User = () => {
   const [selectedId, setSelectedId] = useState("")
   let [getApiData, setApiData] = useState([]);
 
-  // const dispatch = useDispatch();
   const history = useHistory()
-  // const employee = useSelector(state => state.EmpReducer.list)
-
-  const forceUpdate = () => {
-    getApiData = getApiData.filter((data) => {
-      return data.id == selectedId
-    })
-  }
 
   const apiDataHandler = async () => {
     const userInfo = await getUsers({
@@ -56,30 +41,6 @@ const User = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      // const insertEmp = {
-      //   id: employee.length + 1,
-      //   firstName,
-      //   lastName,
-      //   email,
-      //   // profile,
-      //   description,
-      //   hobby
-      // }
-
-      //   dispatch(addEmployee(insertEmp))
-      //   employee.push(insertEmp)
-      // } else {
-      //   dispatch(updateEmployee({
-      //     id: selectedId,
-      //     firstName,
-      //     lastName,
-      //     email,
-      //     // profile,
-      //     description,
-      //     hobby,
-      //   }, selectedId))
-      // }
-
       if (mode === 'Add') {
         await createApi({
           url: 'api/create-user',
@@ -92,7 +53,6 @@ const User = () => {
           password
         })
         setMode(null)
-        forceUpdate()
       } else {
         await updateApi({
           url: `api/update-user/${selectedId}`,
@@ -118,7 +78,6 @@ const User = () => {
     setTimeout(() => {
       history.push("/user");
     }, 5000);
-    // dispatch(deleteEmployee(id))
   }
 
   function updateEmployees(employee) {
@@ -154,29 +113,61 @@ const User = () => {
     <>
       <ToastContainer />
       <HeaderLink />
-      <header>
-        <div
-          style={{
-            display: "flex",
-            backgroundColor: "#e3e3e3",
-            justifyContent: "space-between",
-            alignItems: "center",
-            height: "75px",
-          }}
-        >
-          <h2 style={{ marginLeft: "10px" }}>Amylesoft Employee</h2>
-          <div style={{ marginRight: "40px" }}>
-            <Button
-              variant="contained"
-              type="button"
-              color="primary"
-              onClick={() => handleClickAdd()}
-            >
-              Add
-            </Button>
-          </div>
-        </div>
-      </header>
+
+      <Button
+        variant="contained"
+        type="button"
+        color="primary"
+        onClick={() => handleClickAdd()}
+      >
+        Add
+      </Button>
+
+
+      <Table className="table" size="lg">
+        <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Description</th>
+            <th>Hobby</th>
+            {/* <th align="center">Seprate</th> */}
+            <th style={{paddingLeft:"52px"}}>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {getApiData && getApiData.map((result, i) => (
+            <tr key={i}>
+              <td className="label" align="center">{result.firstName && result.firstName[0].toString().toUpperCase()}{result.lastName && result.lastName[0].toString().toUpperCase()}</td>
+              <td style={{ padding: "10px" }}>{result.firstName} {result.lastName}</td>
+              <td>{result.email}</td>
+              <td>{result.description > 100 ? result.description.substring(0, 30).concat("...") : result.description}</td>
+              <td>{result.hobby}</td>
+              <td><span onClick={() => seprateUserHandle(result._id)}><Icon.Person /></span></td>
+              <td> <Button
+               
+                variant="contained"
+                color="primary"
+                style={{marginRight:"15px"}}
+                onClick={() => updateEmployees(result)}>
+                <Icon.Pencil />
+              </Button>
+              <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => deleteEmployeeData(result._id)}
+                  >
+                    <Icon.Trash />
+                  </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+
+      {/* 
+
       <div className="table">
         <Table aria-label="simple table">
           <TableHead>
@@ -223,9 +214,29 @@ const User = () => {
             ))}
           </TableBody>
         </Table>
-      </div>
+      </div> */}
 
       {/* Modal in here */}
+
+      <Modal.Dialog>
+  <Modal.Header closeButton>
+    <Modal.Title>Modal title</Modal.Title>
+  </Modal.Header>
+
+  <Modal.Body>
+    <p>Modal body text goes here.</p>
+  </Modal.Body>
+
+  <Modal.Footer>
+    <Button variant="secondary">Close</Button>
+    <Button variant="primary">Save changes</Button>
+  </Modal.Footer>
+</Modal.Dialog>
+
+
+
+{/* 
+
       <div>
         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={mode ? true : false}>
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
@@ -316,7 +327,7 @@ const User = () => {
             </DialogActions>
           </form>
         </Dialog>
-      </div>
+      </div> */}
     </>
   );
 }

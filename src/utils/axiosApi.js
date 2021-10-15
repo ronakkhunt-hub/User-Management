@@ -14,6 +14,7 @@ export const registerApi = async (req, data) => {
     })
 }
 
+
 export const loginApi = async (req, data) => {
     return await api.request({
         url: req.url,
@@ -79,5 +80,13 @@ export const deleteApi = async (req, id) => {
         headers: {
             authorization: `Bearer ${token}`,
         }
+    })
+}
+
+export const videoMergeApi = async (req, data) => {
+    return await api.request({
+        url: req.url,
+        method: 'POST',
+        data
     })
 }
