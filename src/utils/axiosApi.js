@@ -4,7 +4,7 @@ export const api = axios.create({
     baseURL: "http://localhost:3002/"
 });
 
-const token = localStorage.getItem('loggedIn');
+let token = localStorage.getItem('loggedIn')
 
 export const registerApi = async (req, data) => {
     return await api.request({
@@ -16,6 +16,14 @@ export const registerApi = async (req, data) => {
 
 
 export const loginApi = async (req, data) => {
+    return await api.request({
+        url: req.url,
+        method: 'POST',
+        data
+    })
+}
+
+export const adminLoginApi = async (req, data) => {
     return await api.request({
         url: req.url,
         method: 'POST',

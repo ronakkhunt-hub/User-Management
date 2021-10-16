@@ -6,7 +6,7 @@
 
 .table {
   max-width: 95%;
-  margin: 10px auto;
+  margin: 0 auto;
 }
 
 .label {
@@ -17,6 +17,12 @@
 .Actionbutton {
   position: absolute;
   margin-right: 10px !important;
+}
+
+.add_button{
+  display: flex;
+  justify-content: flex-end;
+  margin: 15px 15px 0 0; 
 }
 
 @media screen and (min-width: 1080px){

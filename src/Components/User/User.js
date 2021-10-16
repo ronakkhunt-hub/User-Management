@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { Modal, Table } from "react-bootstrap";
+import { FormControl, InputGroup, Modal, Table } from "react-bootstrap";
 import Button from "@material-ui/core/Button";
 import * as Icon from 'react-bootstrap-icons';
-// import TextField from "@material-ui/core/TextField";
-// import Dialog from "@material-ui/core/Dialog";
-// import DialogActions from "@material-ui/core/DialogActions";
-// import DialogContent from "@material-ui/core/DialogContent";
-// import DialogTitle from "@material-ui/core/DialogTitle";
 
 import "./User.css"
 import HeaderLink from "../Header/Link";
@@ -42,7 +37,7 @@ const User = () => {
     e.preventDefault();
     try {
       if (mode === 'Add') {
-        await createApi({
+        const addData = await createApi({
           url: 'api/create-user',
         }, {
           firstName,
@@ -52,9 +47,9 @@ const User = () => {
           hobby,
           password
         })
-        setMode(null)
+        setApiData([ ...getApiData, addData.data.data  ])
       } else {
-        await updateApi({
+        const updateData = await updateApi({
           url: `api/update-user/${selectedId}`,
         }, {
           firstName,
@@ -63,21 +58,28 @@ const User = () => {
           description,
           hobby
         });
-        setMode(null)
+        const updateIndex = getApiData.findIndex((item) => item._id === updateData.data.data?._id)
+        getApiData[updateIndex] = updateData.data.data
       }
     } catch (e) {
       console.log(`e`, e)
     }
+    setMode(null)
   }
 
   async function deleteEmployeeData(_id) {
-    await deleteApi({
-      url: `api/delete-user/${_id}`,
-    })
-    toast('Data deleted successfully');
-    setTimeout(() => {
-      history.push("/user");
-    }, 5000);
+    try {
+      const deleteData = await deleteApi({
+        url: `api/delete-user/${_id}`,
+      })
+      const findEmp = getApiData.filter((item) => item._id !== deleteData.data.data?._id)
+      setApiData(findEmp)
+      toast('Data deleted successfully');
+    } catch (err) {
+      toast('You have not permission to access!', {
+        autoClose: 3000
+      });
+    }
   }
 
   function updateEmployees(employee) {
@@ -88,7 +90,7 @@ const User = () => {
     setHobby(employee.hobby);
     setPassword(employee.password);
     setDescription(employee.description);
-    setMode('Edit')
+    setMode("Update")
   }
 
   function handleClickAdd() {
@@ -111,18 +113,18 @@ const User = () => {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer position="bottom-left" />
       <HeaderLink />
 
-      <Button
-        variant="contained"
-        type="button"
-        color="primary"
-        onClick={() => handleClickAdd()}
-      >
-        Add
-      </Button>
-
+      <div className="add_button">
+        <Button
+          variant="contained"
+          type="button"
+          color="primary"
+          onClick={() => handleClickAdd()}>
+          Add
+        </Button>
+      </div>
 
       <Table className="table" size="lg">
         <thead>
@@ -132,8 +134,7 @@ const User = () => {
             <th>Email</th>
             <th>Description</th>
             <th>Hobby</th>
-            {/* <th align="center">Seprate</th> */}
-            <th style={{paddingLeft:"52px"}}>Action</th>
+            <th style={{ paddingLeft: "52px" }}>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -144,98 +145,107 @@ const User = () => {
               <td>{result.email}</td>
               <td>{result.description > 100 ? result.description.substring(0, 30).concat("...") : result.description}</td>
               <td>{result.hobby}</td>
-              <td><span onClick={() => seprateUserHandle(result._id)}><Icon.Person /></span></td>
-              <td> <Button
-               
-                variant="contained"
-                color="primary"
-                style={{marginRight:"15px"}}
-                onClick={() => updateEmployees(result)}>
-                <Icon.Pencil />
-              </Button>
-              <Button
-                    variant="outlined"
-                    color="primary"
-                    onClick={() => deleteEmployeeData(result._id)}
-                  >
-                    <Icon.Trash />
-                  </Button>
+              <td>
+                <span style={{ marginRight: "10px" }} onClick={() => seprateUserHandle(result._id)}><Icon.Person /></span>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  style={{ marginRight: "15px" }}
+                  onClick={() => updateEmployees(result)}>
+                  <Icon.Pencil />
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => deleteEmployeeData(result._id)}
+                >
+                  <Icon.Trash />
+                </Button>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
 
-      {/* 
-
-      <div className="table">
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center"></TableCell>
-              <TableCell align="center">Name</TableCell>
-              <TableCell align="center">Email</TableCell>
-              <TableCell align="center">Profile</TableCell>
-              <TableCell align="center">Description</TableCell>
-              <TableCell align="center">Hobby</TableCell>
-              <TableCell align="center">Action</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {getApiData && getApiData.map((result, i) => (
-              <TableRow scope="row" key={i}>
-                <TableCell className="label" align="center">
-                  {result.firstName && result.firstName[0].toString().toUpperCase()}{result.lastName && result.lastName[0].toString().toUpperCase()}
-                </TableCell>
-                <TableCell align="center">{result.firstName} {result.lastName}</TableCell>
-                <TableCell align="center">{result.email}</TableCell>
-                <TableCell align="center"><img align="center" src={result.profile} width="80" height="80" style={{ marginTop: '15px' }} alt="Profile"></img></TableCell>
-                <TableCell align="center">{result.description > 100 ? result.description.substring(0, 30).concat("...") : result.description}</TableCell>
-                <TableCell align="center">{result.hobby}</TableCell>
-                <TableCell align="center">
-                  <span onClick={() => seprateUserHandle(result._id)}>
-                    <VisibilityIcon style={{ marginRight: '10px' }} />
-                  </span>
-                  <Button variant="contained"
-                    onClick={() => updateEmployees(result)}
-                    color="primary">
-                    <CreateIcon />
-                  </Button>
-                  <Button
-                    style={{ marginLeft: "10px" }}
-                    variant="outlined"
-                    color="primary"
-                    onClick={() => deleteEmployeeData(result._id)}
-                  >
-                    <DeleteIcon />
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div> */}
 
       {/* Modal in here */}
+      <Modal show={mode} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{mode === "Add" ? "Add" : "Update"} Employee</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
 
-      <Modal.Dialog>
-  <Modal.Header closeButton>
-    <Modal.Title>Modal title</Modal.Title>
-  </Modal.Header>
+          <InputGroup className="mt-3">
+            <FormControl
+              name="text"
+              placeholder="Firstname"
+              aria-label="Firstname"
+              aria-describedby="basic-addon1"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </InputGroup>
 
-  <Modal.Body>
-    <p>Modal body text goes here.</p>
-  </Modal.Body>
+          <InputGroup className="mt-3">
+            <FormControl
+              name="text"
+              placeholder="Lastname"
+              aria-label="Lastname"
+              aria-describedby="basic-addon1"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </InputGroup>
 
-  <Modal.Footer>
-    <Button variant="secondary">Close</Button>
-    <Button variant="primary">Save changes</Button>
-  </Modal.Footer>
-</Modal.Dialog>
+          <InputGroup className="mt-3">
+            <FormControl
+              name="email"
+              placeholder="Email"
+              aria-label="Email"
+              value={email}
+              aria-describedby="basic-addon1"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </InputGroup>
+
+          <InputGroup className="mt-3">
+            <FormControl
+              name="text"
+              placeholder="Description"
+              aria-label="Description"
+              value={description}
+              aria-describedby="basic-addon1"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </InputGroup>
+
+          <InputGroup className="mt-3">
+            <FormControl
+              name="text"
+              placeholder="Hobby"
+              aria-label="Hobby"
+              value={hobby}
+              aria-describedby="basic-addon1"
+              onChange={(e) => setHobby(e.target.value)}
+            />
+          </InputGroup>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
 
 
-{/* 
+      {/* 
 
       <div>
         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={mode ? true : false}>

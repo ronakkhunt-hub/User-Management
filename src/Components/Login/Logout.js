@@ -5,7 +5,7 @@ const Logout = () => {
     let history = useHistory();
 
     function HandleLogout() {
-        localStorage.removeItem('loggedIn')
+        sessionStorage.removeItem('key')
         history.push("/login")
     }
 

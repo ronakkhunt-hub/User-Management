@@ -7,7 +7,9 @@ import './Header.css';
 const HeaderLink = () => {
     
     function isLogin() {
-        if (localStorage.getItem('loggedIn')) {
+        const sessionData = sessionStorage.getItem('key');
+        const loginToken = JSON.parse(sessionData);
+        if(loginToken && loginToken.data){
             return true;
         }
         return false
@@ -25,8 +27,8 @@ const HeaderLink = () => {
                         <Nav.Link><Link className="link" to="/user">List</Link></Nav.Link>
                         <Nav.Link><Link className="link" to="/contact">Contact</Link></Nav.Link>
                         <NavDropdown className="link" title="Login">
-                            <NavDropdown.Item><Link className="link" to="/login">User Login</Link></NavDropdown.Item>
-                            <NavDropdown.Item><Link className="link" to="/admin-login">Admin Login</Link></NavDropdown.Item>
+                            <NavDropdown.Item className="link"><Link className="link" to="/login">User Login</Link></NavDropdown.Item>
+                            <NavDropdown.Item className="link"><Link className="link" to="/admin-login">Admin Login</Link></NavDropdown.Item>
                         </NavDropdown>
                         {isLogin() ? <Nav.Link><Link className="link" to="/logout">Logout</Link></Nav.Link>: null}
                     </Nav>
