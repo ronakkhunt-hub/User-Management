@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Home from '../Home/Home';
-import AdminLogin from '../Login/Admin_Login/Admin_Login';
 import Login, { PrivateRoute } from '../Login/Login';
 import Logout from '../Login/Logout';
 import Register from '../Register/Register';
@@ -18,7 +17,6 @@ const Header = () => {
                 <Switch>
                     <Route exact path="/"><Home /></Route>
                     <Route path="/login"><Login /></Route>
-                    <Route path="/admin-login"><AdminLogin /></Route>
                     <Route path="/register"><Register /></Route>
                     <PrivateRoute exact component={User} path="/user" />
                     <PrivateRoute exact component={SeprateUser} path="/user/:id" />

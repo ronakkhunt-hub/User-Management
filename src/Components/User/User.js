@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { FormControl, InputGroup, Modal, Table } from "react-bootstrap";
-import Button from "@material-ui/core/Button";
-import * as Icon from 'react-bootstrap-icons';
+import { FormControl, InputGroup, Modal, Table, Button } from "react-bootstrap";
+// import Button from '@mui/material/Button';
 
 import "./User.css"
 import HeaderLink from "../Header/Link";
@@ -29,6 +28,38 @@ const User = () => {
     setApiData(userInfo.data.data);
   }
 
+  const randomColor = {
+    A: '445c64',
+    B: '3e3e3e',
+    C: '64948c',
+    D: '419bab',
+    E: '00b1e1',
+    F: '5b6f7c',
+    G: '2c91fe',
+    H: '917d84',
+    I: 'e29f86',
+    J: '302417',
+    K: 'a8d2c5',
+    L: 'ecae1f',
+    M: '397989',
+    N: 'e95e29',
+    O: '4c70a4',
+    P: '499c50',
+    Q: '89bbec',
+    R: '0c3c7c',
+    S: 'c0d0bd',
+    T: '9b5a72',
+    U: '61c6fb',
+    V: '271dd3',
+    W: 'bfb6dd',
+    X: '3cb371',
+    Y: '787878',
+    Z: '897841'
+  }
+
+  function generateRandomColor(key) {
+    return `#${randomColor[key]}`;
+  }
   useEffect(() => {
     apiDataHandler();
   }, [])
@@ -47,7 +78,7 @@ const User = () => {
           hobby,
           password
         })
-        setApiData([ ...getApiData, addData.data.data  ])
+        setApiData([...getApiData, addData.data.data])
       } else {
         const updateData = await updateApi({
           url: `api/update-user/${selectedId}`,
@@ -68,18 +99,12 @@ const User = () => {
   }
 
   async function deleteEmployeeData(_id) {
-    try {
-      const deleteData = await deleteApi({
-        url: `api/delete-user/${_id}`,
-      })
-      const findEmp = getApiData.filter((item) => item._id !== deleteData.data.data?._id)
-      setApiData(findEmp)
-      toast('Data deleted successfully');
-    } catch (err) {
-      toast('You have not permission to access!', {
-        autoClose: 3000
-      });
-    }
+    const deleteData = await deleteApi({
+      url: `api/delete-user/${_id}`,
+    })
+    const findEmp = getApiData.filter((item) => item._id !== deleteData.data.data?._id)
+    setApiData(findEmp)
+    toast('Data deleted successfully');
   }
 
   function updateEmployees(employee) {
@@ -118,58 +143,61 @@ const User = () => {
 
       <div className="add_button">
         <Button
-          variant="contained"
+          style={{ padding: '8px 20px' }}
           type="button"
-          color="primary"
           onClick={() => handleClickAdd()}>
           Add
         </Button>
       </div>
 
-      <Table className="table" size="lg">
-        <thead>
-          <tr>
-            <th>Sr.No</th>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Description</th>
-            <th>Hobby</th>
-            <th style={{ paddingLeft: "52px" }}>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {getApiData && getApiData.map((result, i) => (
-            <tr key={i}>
-              <td className="label" align="center">{result.firstName && result.firstName[0].toString().toUpperCase()}{result.lastName && result.lastName[0].toString().toUpperCase()}</td>
-              <td style={{ padding: "10px" }}>{result.firstName} {result.lastName}</td>
-              <td>{result.email}</td>
-              <td>{result.description > 100 ? result.description.substring(0, 30).concat("...") : result.description}</td>
-              <td>{result.hobby}</td>
-              <td>
-                <span style={{ marginRight: "10px" }} onClick={() => seprateUserHandle(result._id)}><Icon.Person /></span>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  style={{ marginRight: "15px" }}
-                  onClick={() => updateEmployees(result)}>
-                  <Icon.Pencil />
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  onClick={() => deleteEmployeeData(result._id)}
-                >
-                  <Icon.Trash />
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <div className="tableDiv">
+        <div className="tableDiv2">
+          <Table>
+            <thead>
+              <tr>
+                <th>Sr.No</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Description</th>
+                <th>Hobby</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {getApiData && getApiData.map((result, i) => (
+                <tr key={i}>
+                  <td style={{textAlign: 'center'}} onClick={() => seprateUserHandle(result._id)}>
+                    <div className="label" style={{ backgroundColor: generateRandomColor(result.firstName[0].toString().toUpperCase()), }}>{result.firstName && result.firstName[0].toString().toUpperCase()}</div>
+                  </td>
+                  <td>{result.firstName} {result.lastName}</td>
+                  <td>{result.email}</td>
+                  <td>{result.description > 100 ? result.description.substring(0, 30).concat("...") : result.description}</td>
+                  <td>{result.hobby}</td>
+                  <td>
+                    <Button
+                      className="updateButton"
+                      type="button"
+                      onClick={() => updateEmployees(result)}>
+                      <i class="fas fa-pencil"></i>
+                    </Button>
+                    <Button
+                      className="deleteButton"
+                      type="button"
+                      onClick={() => deleteEmployeeData(result._id)}
+                    >
+                      <i class="fas fa-trash"></i>
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      </div>
 
 
       {/* Modal in here */}
-      <Modal show={mode} onHide={handleClose}>
+      <Modal show={mode ? true : false} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{mode === "Add" ? "Add" : "Update"} Employee</Modal.Title>
         </Modal.Header>
@@ -237,107 +265,11 @@ const User = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button onClick={handleSubmit}>
             Submit
           </Button>
         </Modal.Footer>
       </Modal>
-
-
-
-      {/* 
-
-      <div>
-        <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={mode ? true : false}>
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            {mode} Employee
-          </DialogTitle>
-          <form className="employee_form" onSubmit={(e) => handleSubmit(e)}>
-            <DialogContent dividers>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="First Name"
-                autoComplete="off"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                type="text"
-                required
-                fullWidth
-              />
-
-
-              <TextField
-                id="name"
-                margin="dense"
-                label="Last Name"
-                autoComplete="off"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                type="text"
-                required
-                fullWidth
-              />
-
-              <TextField
-                id="name"
-                margin="dense"
-                label="Email Address"
-                autoComplete="off"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                required
-                fullWidth
-              />
-
-
-              <TextField
-                id="description"
-                margin="dense"
-                label="Description"
-                autoComplete="off"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                type="text"
-                fullWidth
-              />
-
-              <TextField
-                id="name"
-                margin="dense"
-                label="Hobby"
-                value={hobby}
-                autoComplete="off"
-                onChange={(e) => setHobby(e.target.value)}
-                type="text"
-                fullWidth
-              />
-
-              <TextField
-                id="password"
-                margin="dense"
-                label="Password"
-                autoComplete="off"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="text"
-                fullWidth
-              />
-
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose} color="primary">
-                Cancel
-              </Button>
-              <Button type="submit" color="primary">
-                Submit
-              </Button>
-            </DialogActions>
-          </form>
-        </Dialog>
-      </div> */}
     </>
   );
 }

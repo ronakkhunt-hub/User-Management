@@ -18,3 +18,9 @@
   margin: 6px;
   background-color: cornflowerblue;
 }
+
+.testClass{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}

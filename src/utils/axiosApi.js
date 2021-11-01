@@ -14,16 +14,7 @@ export const registerApi = async (req, data) => {
     })
 }
 
-
 export const loginApi = async (req, data) => {
-    return await api.request({
-        url: req.url,
-        method: 'POST',
-        data
-    })
-}
-
-export const adminLoginApi = async (req, data) => {
     return await api.request({
         url: req.url,
         method: 'POST',
@@ -38,14 +29,6 @@ export const getOneUser = async (req) => {
         headers: {
             authorization: `Bearer ${token}`,
         }
-    })
-}
-
-export const validateUser = async (req, data) => {
-    return await api.request({
-        url: req.url,
-        method: 'POST',
-        data
     })
 }
 
@@ -88,13 +71,5 @@ export const deleteApi = async (req, id) => {
         headers: {
             authorization: `Bearer ${token}`,
         }
-    })
-}
-
-export const videoMergeApi = async (req, data) => {
-    return await api.request({
-        url: req.url,
-        method: 'POST',
-        data
     })
 }

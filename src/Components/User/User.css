@@ -4,14 +4,112 @@
   box-sizing: border-box;
 }
 
-.table {
-  max-width: 95%;
-  margin: 0 auto;
+::selection {
+  background-color: #677c75 !important;
+}
+
+.tableDiv {
+  margin: 30px 30px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16),
+    inset 0 5px 6px 0 rgba(0, 0, 0, 0.16);
+  padding: 0px 30px;
+}
+
+.tableDiv2 table {
+  width: 100%;
+  padding: 50px 0;
+  vertical-align: middle;
+  border-collapse: separate;
+  border-spacing: 0px 15px;
+  color: rgb(128, 128, 128);
+  font-size: 12px;
+  text-align: left;
+}
+
+.tableDiv2 thead {
+  margin-bottom: 20px;
+  background: rgb(6, 85, 169);
+}
+
+.tableDiv2 thead th:first-child {
+  border-left-style: solid;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.tableDiv2 thead th:last-child {
+  border-left-style: solid;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.tableDiv2 thead th {
+  height: 66px;
+  padding: 20px;
+  color: rgb(255, 255, 255);
+  font-size: 120%;
+  font-weight: 600;
+  border: 0px solid transparent;
+  text-align: center !important;
+}
+
+.tableDiv2 tbody tr:hover {
+  vertical-align: middle;
+  border-radius: 10px;
+  text-align: center !important;
+  box-shadow: rgb(0 0 0 / 30%) 0px 4px 10px 1px;
+  transform: scale(1.01);
+}
+
+.tableDiv2 tbody tr {
+  background: 0% 0% no-repeat padding-box padding-box rgb(255, 255, 255);
+  height: 60px;
+  cursor: pointer;
+  transform: perspective(1px) translateZ(0px);
+  transition-duration: 0.3s;
+  transition-property: box-shadow, transform;
+  box-shadow: transparent 0px 0px 1px;
+}
+
+.tableDiv2 td:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-left-style: solid;
+  border-bottom-style: solid;
+}
+
+.tableDiv2 td:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-left-style: solid;
+  border-bottom-style: solid;
+}
+
+.tableDiv2 td {
+  font-size: 15px;
+  text-align: center;
+  font-family: "Product Sans";
+  padding: 10 px;
+  border-color: lightgrey;
+  color: black;
 }
 
 .label {
-  color: white !important;
-  background-color: rgb(34, 61, 110) !important;
+  color: white;
+  width: 40px;
+  margin-left: 50px !important;
+  padding: 8px 0;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 100%;
+  font-family: monospace;
+  cursor: pointer;
 }
 
 .Actionbutton {
@@ -19,16 +117,23 @@
   margin-right: 10px !important;
 }
 
-.add_button{
+.add_button {
   display: flex;
   justify-content: flex-end;
-  margin: 15px 15px 0 0; 
+  margin: 15px 50px 0 0;
 }
 
-@media screen and (min-width: 1080px){
-  .label {
-    width: 60px;
-    height: 30px;
-    margin: 5px 15px;
-  }
+.deleteButton {
+  border: none !important;
+  background-color: firebrick !important;
+  margin-right: 18px !important;
+}
+
+.updateButton {
+  border: none !important;
+  background-color: #4c6ef5 !important;
+  margin-right: 18px !important;
+}
+
+@media screen and (min-width: 1080px) {
 }

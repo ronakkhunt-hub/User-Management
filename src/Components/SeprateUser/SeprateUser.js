@@ -24,9 +24,6 @@ const SeprateUser = (props) => {
         setSeprateUser(userInfo.data.data);
     }
 
-    // const employee = useSelector(state => state.EmpReducer.list)
-    // const seprateUser = employee.filter((user) => user.id === parseInt(seprateId))
-
     return (
         <>
             <div className="main">
