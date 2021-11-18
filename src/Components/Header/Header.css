@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap');
 
 * {
   margin: 0;
@@ -13,18 +13,19 @@
 }
 
 .homeLink {
-  font-size: 22px;
+  font-size: 30px;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
+  font-family: "Raleway", sans-serif;
   color: #0e5abd;
   text-decoration: none;
 }
 
 .link {
   color: rgb(117, 116, 116);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   margin-left: 10px;
+  line-height: 50px;
   font-family: "Poppins", sans-serif;
   text-decoration: none;
 }

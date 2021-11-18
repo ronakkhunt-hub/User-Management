@@ -22,7 +22,7 @@ function Dashboard() {
     });
     setProduct(productInfo ? productInfo.data.data : null);
   }
-console.log(`process.env.REACT_APP_PRODUCTMANAGEURL`, process.env.REACT_APP_PRODUCTMANAGEURL)
+
   useEffect(() => {
     getProducts();
   }, [])

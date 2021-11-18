@@ -39,11 +39,10 @@ function SeprateCartItem(props) {
             <CartItem />
             <div className="seprateContainer">
                 <div className="cartModal">
-                    <h1>Cart Profile</h1>
                     <div className="product_outer">
                         <img className="product_inner" src={productCart && productCart.image} alt="50497-7-mobile-earphone-png-file-hd" border="0" />
                     </div>
-                    <h2 className="title">{productCart && productCart.title}</h2>
+                    <h3 className="title">{productCart && productCart.title}</h3>
                     <h4 className="description">{productCart && productCart.desctiption}</h4>
                     <p className="price">${productCart && productCart.price}</p>
 
