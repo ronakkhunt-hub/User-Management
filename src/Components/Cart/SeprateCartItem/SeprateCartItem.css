@@ -1,0 +1,46 @@
+.seprateContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin: 5% 20%;
+  flex-wrap: wrap;
+  z-index: 1;
+}
+
+.seprateContainer .cartModal {
+  margin: 30px;
+  padding: 40px;
+  width: 95%;
+  min-height: 95%;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.5);
+  background: rgba(199, 197, 197, 0.1);
+}
+
+.product_outer {
+  text-align: center;
+}
+
+.product_outer img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.title {
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+}
+
+.price {
+  text-align: center;
+}
+
+/* display: inline-block; */
+.addToCart {
+  text-align: center;
+}

@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.dashboardContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  max-width: 100%;
+  flex-wrap: wrap;
+  z-index: 1;
+}
+
+.dashboardContainer .card:hover {
+  transition: ease-in-out 0.3s;
+  box-shadow: 1px 5px 6px rgba(0, 0, 0, 0.5);
+}
+
+.dashboardContainer .card {
+  position: relative;
+  width: 380px;
+  height: 400px;
+  margin: 30px;
+  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.dashboardContainer .card .content {
+  padding: 20px;
+  text-align: center;
+}
+
+.dashboardContainer .card:hover .content img {
+  transform: scale(1.1);
+  transition: 0.3s;
+  filter: drop-shadow(5px 5px 4px #666);
+}
+
+.dashboardContainer .card .content h3 {
+  font-size: 1.8em;
+  color: #000;
+}
+
+.dashboardContainer .card .content h4 {
+  font-size: 1.5em;
+  color: #000;
+  z-index: 1;
+}
+
+.dashboardContainer .card .content p {
+  font-size: 1em;
+  color: #000;
+  font-weight: 300;
+}
+
+.dashboardContainer .card .content .product_outer {
+  margin: 10px auto;
+}
+
+.dashboardContainer .card .content .product_outer img {
+  transition: 0.3s;
+  transform: scale(1);
+  max-width: 200px;
+  max-height: 200px;
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  margin-top: 20px;
+}
+
+.dashboardContainer .card .content .buynow {
+  transform: translateY(10px);
+  opacity: 0;
+  transition: 0.5s;
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  background: #0e5abd;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dashboardContainer .card:hover .content .buynow {
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+@media only screen and (max-width: 480px) {
+  /* Smartphone view: 1 tile */
+  .dashboardContainer .card {
+    width: 100%;
+  }
+
+  .dashboardContainer .card .content {
+    /* padding: 20px; */
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 650px) and (min-width: 481px) {
+  /* Tablet view: 2 tiles */
+  .dashboardContainer .card {
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 1050px) and (min-width: 651px) {
+  /* Small desktop / ipad view: 3 tiles */
+  .dashboardContainer .card {
+    width: 33.3%;
+  }
+}
+@media only screen and (max-width: 1290px) and (min-width: 1051px) {
+  /* Medium desktop: 4 tiles */
+  .dashboardContainer .card {
+    width: 25%;
+  }
+}

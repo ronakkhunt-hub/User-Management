@@ -16,7 +16,7 @@ function isLogin() {
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
     return (
-        <Route {...rest} render={props => (
+        <Route {...rest} component={props => (
             isLogin() ?
                 <Component {...props} />
                 : <Redirect to="/login" />
@@ -24,7 +24,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
     );
 };
 
-const Login = () => {
+const Login = ({setTokenData}) => {
     const history = useHistory();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -40,6 +40,7 @@ const Login = () => {
             })
             if (login) {
                 localStorage.setItem('loggedIn', login.data.token);
+                setTokenData(login.data.token)
                 toast('LoggedIn successfully');
                 setTimeout(() => {
                     history.push("/");

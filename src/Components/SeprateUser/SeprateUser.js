@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router-dom';
 import { getOneUser } from '../../utils/axiosApi'
 
 import "./SeprateUser.css"
 
 const SeprateUser = (props) => {
-    const [seprateUser, setSeprateUser] = useState("");
+    const [seprateUser, setSeprateUser] = useState([]);
     const { id } = useParams();
     const history = useHistory();
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Col, Button, Container, Form, FormControl, InputGroup, Row } from "react-bootstrap";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { registerApi } from "../../utils/axiosApi";
 

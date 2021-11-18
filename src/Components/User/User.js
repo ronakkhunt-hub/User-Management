@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { FormControl, InputGroup, Modal, Table, Button } from "react-bootstrap";
 // import Button from '@mui/material/Button';
 
@@ -60,6 +60,7 @@ const User = () => {
   function generateRandomColor(key) {
     return `#${randomColor[key]}`;
   }
+
   useEffect(() => {
     apiDataHandler();
   }, [])
@@ -107,8 +108,8 @@ const User = () => {
     toast('Data deleted successfully');
   }
 
-  function updateEmployees(employee) {
-    setSelectedId(employee._id)
+  function updateEmployees(_id, employee) {
+    setSelectedId(_id)
     setFirstName(employee.firstName);
     setLastName(employee.lastName);
     setEmail(employee.email);
@@ -166,7 +167,7 @@ const User = () => {
             <tbody>
               {getApiData && getApiData.map((result, i) => (
                 <tr key={i}>
-                  <td style={{textAlign: 'center'}} onClick={() => seprateUserHandle(result._id)}>
+                  <td onClick={() => seprateUserHandle(result._id)}>
                     <div className="label" style={{ backgroundColor: generateRandomColor(result.firstName[0].toString().toUpperCase()), }}>{result.firstName && result.firstName[0].toString().toUpperCase()}</div>
                   </td>
                   <td>{result.firstName} {result.lastName}</td>
@@ -177,15 +178,15 @@ const User = () => {
                     <Button
                       className="updateButton"
                       type="button"
-                      onClick={() => updateEmployees(result)}>
-                      <i class="fas fa-pencil"></i>
+                      onClick={() => updateEmployees(i, result)}>
+                      <i className="fas fa-pencil"></i>
                     </Button>
                     <Button
                       className="deleteButton"
                       type="button"
-                      onClick={() => deleteEmployeeData(result._id)}
+                      onClick={() => deleteEmployeeData(i, result._id)}
                     >
-                      <i class="fas fa-trash"></i>
+                      <i className="fas fa-trash"></i>
                     </Button>
                   </td>
                 </tr>
@@ -229,6 +230,7 @@ const User = () => {
 
           <InputGroup className="mt-3">
             <FormControl
+              type="email"
               name="email"
               placeholder="Email"
               aria-label="Email"

@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-::selection {
-  background-color: #677c75 !important;
-}
-
 .tableDiv {
   margin: 30px 30px;
   border-radius: 10px;
@@ -63,11 +59,12 @@
 }
 
 .tableDiv2 tbody tr {
+  border-top-width: 1px;
   background: 0% 0% no-repeat padding-box padding-box rgb(255, 255, 255);
-  height: 60px;
+  height: 50px;
   cursor: pointer;
   transform: perspective(1px) translateZ(0px);
-  transition-duration: 0.3s;
+  transition-duration: 0.4s;
   transition-property: box-shadow, transform;
   box-shadow: transparent 0px 0px 1px;
 }
@@ -75,16 +72,23 @@
 .tableDiv2 td:first-child {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+  border-left-width: 1px;
   border-bottom-width: 1px;
   border-top-style: solid;
   border-left-style: solid;
   border-bottom-style: solid;
 }
 
+.tableDiv2 td {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
+
 .tableDiv2 td:last-child {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   border-bottom-width: 1px;
+  border-right-width: 1px;
   border-top-style: solid;
   border-left-style: solid;
   border-bottom-style: solid;
@@ -93,7 +97,6 @@
 .tableDiv2 td {
   font-size: 15px;
   text-align: center;
-  font-family: "Product Sans";
   padding: 10 px;
   border-color: lightgrey;
   color: black;
@@ -101,8 +104,8 @@
 
 .label {
   color: white;
-  width: 40px;
-  margin-left: 50px !important;
+  width: 50px;
+  margin-left: 100px !important;
   padding: 8px 0;
   font-size: 20px;
   font-weight: 600;
