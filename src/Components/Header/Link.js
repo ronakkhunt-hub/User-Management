@@ -28,7 +28,7 @@ const HeaderLink = () => {
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="ml-5">
                                     <Link className="link" to="/">Home</Link>
-                                    {/* <Nav.Link><Link className="link" to="/user">List</Link></Nav.Link> */}
+                                    <Link className="link" to="/music">Music</Link>
                                     <Link className="link" to="/contact">Contact</Link>
                                     {isLogin() ? null : <Link className="link" to="/login">Login</Link>}
                                     {isLogin() ? <Link className="link" to="/logout">Logout</Link> : null}

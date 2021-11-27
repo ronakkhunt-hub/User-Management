@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./Components/Header/Header";
+import Header from "./components/Header/Header";
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const App = () => {

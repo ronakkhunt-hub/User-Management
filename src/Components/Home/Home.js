@@ -1,8 +1,8 @@
 import { Button, Card, Carousel } from "react-bootstrap";
 import HeaderLink from "../Header/Link";
-import image from "../../Assets/slider/1.jpg";
-import image2 from "../../Assets/slider/2.jpg";
-import image3 from "../../Assets/slider/3.jpg";
+import image from "../../assets/Slider/1.jpg";
+import image2 from "../../assets/Slider/2.jpg";
+import image3 from "../../assets/Slider/3.jpg";
 
 import "./Home.css";
 

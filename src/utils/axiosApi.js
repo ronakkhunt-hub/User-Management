@@ -3,9 +3,6 @@ import axios from "axios";
 export const api = axios.create({
     baseURL: process.env.REACT_APP_PRODUCTMANAGEURL
 });
-
-let token = localStorage.getItem('loggedIn')
-
 export const registerApi = async (req, data) => {
     return await api.request({
         url: req.url,
@@ -45,6 +42,7 @@ export const getUsers = async (req) => {
 }
 
 export const createApi = async (req, data) => {
+    let token = localStorage.getItem('loggedIn')
     return await api.request({
         url: req.url,
         method: 'POST',
@@ -56,6 +54,7 @@ export const createApi = async (req, data) => {
 }
 
 export const updateApi = async (req, data) => {
+    let token = localStorage.getItem('loggedIn')
     return await api.request({
         url: req.url,
         method: 'PATCH',
@@ -67,6 +66,7 @@ export const updateApi = async (req, data) => {
 }
 
 export const deleteApi = async (req, id) => {
+    let token = localStorage.getItem('loggedIn')
     return await api.request({
         url: req.url,
         method: "DELETE",
@@ -88,6 +88,7 @@ export const getProduct = async (req) => {
 }
 
 export const getOneProduct = async (req) => {
+    let token = localStorage.getItem('loggedIn')
     return await api.request({
         url: req.url,
         method: "GET",
@@ -98,7 +99,7 @@ export const getOneProduct = async (req) => {
 }
 
 export const addtoCart = async (req, data) => {
-    console.log(`data`, data)
+    let token = localStorage.getItem('loggedIn')
     return await api.request({
         url: req.url,
         method: "POST",
@@ -110,6 +111,7 @@ export const addtoCart = async (req, data) => {
 }
 
 export const getOrderCart = async (req) => {
+    let token = localStorage.getItem('loggedIn')
     return await api.request({
         url: req.url,
         method: "GET",
@@ -120,6 +122,7 @@ export const getOrderCart = async (req) => {
 }
 
 export const getOneOrderCart = async (req) => {
+    let token = localStorage.getItem('loggedIn')
     return await api.request({
         url: req.url,
         method: "GET",
@@ -130,6 +133,7 @@ export const getOneOrderCart = async (req) => {
 }
 
 export const updateCart = async (req, data) => {
+    let token = localStorage.getItem('loggedIn')
     return await api.request({
         url: req.url,
         method: "PATCH",
@@ -141,6 +145,7 @@ export const updateCart = async (req, data) => {
 }
 
 export const deleteCart = async (req) => {
+    let token = localStorage.getItem('loggedIn')
     return await api.request({
         url: req.url,
         method: "DELETE",

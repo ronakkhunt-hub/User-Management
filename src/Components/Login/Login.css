@@ -14,6 +14,88 @@
   margin: 10px auto;
 }
 
-.button {
-  margin: 15px auto;
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginPage {
+  width: 30%;
+  margin: 50px 0;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.form {
+  width: 80%;
+  margin: 50px auto;
+}
+
+.form h3 {
+  text-align: center;
+}
+
+.loginButton {
+  width: 100%;
+}
+
+#buttonLogin {
+  padding: 5px 9.9em !important;
+}
+
+.alreadyRegister {
+  text-align: center;
+  margin: 20px;
+}
+
+@media screen and (max-width: 575px) {
+  .loginPage {
+    width: 80%;
+  }
+
+  #buttonLogin {
+    padding: 5px 7em !important;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .loginPage {
+    width: 60%;
+  }
+
+  #buttonLogin {
+    padding: 5px 8em !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .loginPage {
+    width: 50%;
+  }
+
+  #buttonLogin {
+    padding: 5px 8em !important;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .loginPage {
+    width: 50%;
+  }
+
+  #buttonLogin {
+    padding: 5px 12em !important;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+  .loginPage {
+    width: 40%;
+  }
+
+  #buttonLogin {
+    padding: 5px 11.1em !important;
+  }
 }

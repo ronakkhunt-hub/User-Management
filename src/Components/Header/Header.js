@@ -8,6 +8,7 @@ import Dashboard from '../Dashboard/Dashboard';
 import Home from '../Home/Home';
 import Login, { PrivateRoute } from '../Login/Login';
 import Logout from '../Login/Logout';
+import Music from '../Music/Music';
 import Register from '../Register/Register';
 import SeprateUser from '../SeprateUser/SeprateUser';
 import User from '../User/User';
@@ -15,10 +16,10 @@ import User from '../User/User';
 import './Header.css';
 
 const Header = () => {
-    const [getTokenData,setTokenData] = useState('');
+    const [getTokenData, setTokenData] = useState('');
     console.log(`getTokenData`, getTokenData)
-    
-     function getLoginData() {
+
+    function getLoginData() {
         const getData = localStorage.getItem("loggedIn");
         if (!getData) {
             return false;
@@ -39,7 +40,7 @@ const Header = () => {
                                 : <Home />
                         }
                     </Route>
-                    <Route path="/login"><Login setTokenData={setTokenData}/></Route>
+                    <Route path="/login"><Login setTokenData={setTokenData} /></Route>
                     <Route path="/register"><Register /></Route>
                     <PrivateRoute exact component={User} path="/user" />
                     <PrivateRoute exact component={SeprateUser} path="/user/:id" />
@@ -49,6 +50,7 @@ const Header = () => {
                     <PrivateRoute exact component={Dashboard} path="/dashboard" />
                     <PrivateRoute exact component={Cart} path="/addToCart" />
                     <PrivateRoute exact component={SeprateCartItem} path="/addToCart/:id" />
+                    <Route path="/music" component={Music} />
                 </Switch>
             </Router>
         </>

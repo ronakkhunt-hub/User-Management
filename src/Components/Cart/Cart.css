@@ -7,21 +7,23 @@
 .Cartcontainer {
   position: relative;
   width: 80%;
-  height: 93vh;
+  height: 90vh;
   overflow-y: scroll;
+  overflow-x: scroll;
   margin: 0 auto;
   z-index: 1;
 }
+
 .Cartcontainer::-webkit-scrollbar {
   display: none;
 }
 
 .cartItem {
   display: flex;
-  padding: 30px;
+  padding: 20px;
   justify-content: space-around;
   background: rgba(199, 197, 197, 0.1);
-  margin: 30px 0;
+  margin: 20px 0;
   border-radius: 18px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.08),
     inset 0 5px 6px 0 rgba(0, 0, 0, 0.08);
@@ -31,13 +33,16 @@
   width: 20%;
   max-width: 160px;
   max-height: 150px;
+  margin-top: 18px;
   box-shadow: 5px 10px 15px rgba(95, 94, 94, 0.5);
   border-radius: 10px;
-  padding: 15px;
+  padding: 20px;
 }
 
 .cartHeading {
   text-align: center;
+  margin-top: 60px;
+  text-transform: uppercase;
 }
 
 .cartItem h4 {
@@ -47,9 +52,10 @@
   width: 20%;
 }
 
-.cartItem p {
-  margin: 50px;
+.cartPrice {
+  margin-top: 70px;
   width: 20%;
+  margin-right: 50px;
   line-height: 50px;
   float: right;
   text-align: right;
@@ -57,10 +63,9 @@
 
 .quantitySection {
   display: flex;
-  margin: 50px;
+  margin-top: 70px;
   width: 20%;
-  line-height: 50px;
-  pointer-events: painted;
+  line-height: 80px;
 }
 
 .minusCartQuantity {
@@ -105,23 +110,15 @@
   width: 50px;
 }
 
-.removeIcon {
-  color: firebrick;
-  font-size: 25px;
-  cursor: pointer;
-  margin: 50px;
-  line-height: 50px;
-}
-
 .totalPrice {
   position: fixed;
   width: 100%;
+  bottom: 0.1%;
   display: flex;
   justify-content: flex-end;
   background: rgba(0, 0, 0, 0.4);
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
-  z-index: 111111;
   height: 7vh;
 }
 
@@ -136,4 +133,44 @@
 
 .priceContent button {
   margin: 5px 150px;
+}
+
+.removeIcon {
+  color: firebrick;
+  font-size: 25px;
+  cursor: pointer;
+  margin-top: 70px;
+  margin-right: 40px;
+  line-height: 50px;
+}
+
+.displayCartEmpty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.displayCartEmpty img {
+  text-align: center;
+}
+
+.displayCartEmpty h6 {
+  margin-top: 20px;
+  color: #777;
+}
+
+.cartOrderNow {
+  padding: 10px;
+  margin: 10px;
+  background: rgb(16, 102, 214);
+  border-radius: 3px;
+}
+
+.cartOrderNow a {
+  color: #fff;
+}
+
+.cartOrderNow a:hover {
+  color: #fff;
 }
