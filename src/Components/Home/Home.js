@@ -1,4 +1,4 @@
-import { Button, Card, Carousel } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 import HeaderLink from "../Header/Link";
 import image from "../../assets/Slider/1.jpg";
 import image2 from "../../assets/Slider/2.jpg";
@@ -7,80 +7,60 @@ import image3 from "../../assets/Slider/3.jpg";
 import "./Home.css";
 
 const Home = () => {
-  const data = [
-    {
-      title: "Ronak",
-      des: "gujhgjkfdsd",
-    },
-    {
-      title: "Parth",
-      des: "dfghdfhd",
-    },
-    {
-      title: "Bhasker",
-      des: "svfghfsd",
-    },
-    {
-      title: "Sagar",
-      des: "sdfgbsfg",
-    },
-    {
-      title: "Sagar",
-      des: "sdfgbsfg",
-    },
-    {
-      title: "Sagar",
-      des: "sdfgbsfg",
-    },
-  ];
-
   return (
     <>
       <HeaderLink />
-      <Carousel variant="dark">
-        <Carousel.Item>
-          <img
-            style={{ height: "662px" }}
-            className="d-block w-100"
-            src={image}
-            alt="First slide"
-          />
-        </Carousel.Item>
+      <div className="homeContainer">
+        <Carousel variant="dark">
+          <Carousel.Item>
+            <img
+              style={{ height: "650px" }}
+              className="d-block w-100"
+              src={image}
+              alt="First slide"
+            />
+          </Carousel.Item>
 
-        <Carousel.Item>
-          <img
-            style={{ height: "662px" }}
-            className="d-block w-100"
-            src={image2}
-            alt="Second slide"
-          />
-        </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ height: "650px" }}
+              className="d-block w-100"
+              src={image2}
+              alt="Second slide"
+            />
+          </Carousel.Item>
 
-        <Carousel.Item>
-          <img
-            style={{ height: "662px" }}
-            className="d-block w-100"
-            src={image3}
-            alt="Third slide"
-          />
-        </Carousel.Item>
-      </Carousel>
-
-      <div className="testClass">
-        {data.map((item, i) => (
-          <Card
-            key={i}
-            className="mt-5 mb-5 "
-            style={{ width: "18.5%", margin: "0 8px" }}
-          >
-            <Card.Body>
-              <Card.Title>{item.title}</Card.Title>
-              <Card.Text>{item.des}</Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-        ))}
+          <Carousel.Item>
+            <img
+              style={{ height: "650px" }}
+              className="d-block w-100"
+              src={image3}
+              alt="Third slide"
+            />
+          </Carousel.Item>
+        </Carousel>
       </div>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
+      <p> xzVDXXDZbgvzxcbzcbnxcnb,ghiyfik</p>
     </>
   );
 };

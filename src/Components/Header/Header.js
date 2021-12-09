@@ -44,7 +44,6 @@ const Header = () => {
                     <Route path="/register"><Register /></Route>
                     <PrivateRoute exact component={User} path="/user" />
                     <PrivateRoute exact component={SeprateUser} path="/user/:id" />
-                    <PrivateRoute exact component={SeprateUser} path="/user/:id" />
                     <Route path="/contact"><Contact /></Route>
                     <Route path="/logout" component={Logout}></Route>
                     <PrivateRoute exact component={Dashboard} path="/dashboard" />

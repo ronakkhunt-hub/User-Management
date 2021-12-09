@@ -79,10 +79,12 @@ function Cart() {
     }
 
     async function OrderNow() {
-        alert('Ordered Successfully')
+        if (cartData && !cartData.data.length) {
+            alert('Please add product to cart')
+        } else {
+            alert('Ordered Successfully')
+        }
     }
-
-    console.log(`cartData`, cartData)
 
     return (
         <>
@@ -112,7 +114,7 @@ function Cart() {
                                         <ion-icon name="add-outline"></ion-icon>
                                     </button>
                                 </div>
-                                <p className="cartPrice">${item.price * item.quantity}</p>
+                                <p className="cartPrice">$ {item.price * item.quantity}</p>
                                 <div className="removeIcon" onClick={() => removeCart(item._id)}>
                                     <ion-icon name="trash-outline"></ion-icon>
                                 </div>
@@ -122,7 +124,7 @@ function Cart() {
             </div>
             <div className="totalPrice">
                 <div className="priceContent">
-                    <h4>${totalPrice ? totalPrice : 0}</h4>
+                    <h4>$ {totalPrice ? totalPrice : 0}</h4>
                     <Button onClick={OrderNow}>Check Out</Button>
                 </div>
             </div>

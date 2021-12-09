@@ -3,6 +3,7 @@ import axios from "axios";
 export const api = axios.create({
     baseURL: process.env.REACT_APP_PRODUCTMANAGEURL
 });
+
 export const registerApi = async (req, data) => {
     return await api.request({
         url: req.url,

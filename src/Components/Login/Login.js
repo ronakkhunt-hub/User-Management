@@ -74,6 +74,7 @@ const Login = ({ setTokenData }) => {
                                     </InputGroup>
                                     <InputGroup className="mt-3">
                                         <FormControl
+                                            type="password"
                                             placeholder="Password"
                                             aria-label="Password"
                                             aria-describedby="basic-addon1"
@@ -83,13 +84,13 @@ const Login = ({ setTokenData }) => {
                                     </InputGroup>
 
                                     <div className="mt-3 loginButton">
-                                        <Button type="submit" id="buttonLogin" className="btn btn-primary">Submit</Button>
+                                        <Button type="submit" className="btn btn-primary">Submit</Button>
                                     </div>
                                 </Col>
                             </Row>
                         </Form>
                         <div className="alreadyRegister">
-                        Don't Have An Account? <Link to="/register">Sign Up</Link>
+                            Don't Have An Account? <Link to="/register">Sign Up</Link>
                         </div>
                     </div>
                 </div>

@@ -37,12 +37,8 @@ section {
   text-align: center;
 }
 
-.loginButton {
+.loginButton button {
   width: 100%;
-}
-
-#buttonLogin {
-  padding: 5px 9.9em !important;
 }
 
 .alreadyRegister {
@@ -55,8 +51,8 @@ section {
     width: 80%;
   }
 
-  #buttonLogin {
-    padding: 5px 7em !important;
+  .alreadyRegister {
+    font-size: 15px;
   }
 }
 
@@ -64,9 +60,9 @@ section {
   .loginPage {
     width: 60%;
   }
-
-  #buttonLogin {
-    padding: 5px 8em !important;
+  .alreadyRegister {
+    text-align: center;
+    margin: 20px;
   }
 }
 
@@ -74,28 +70,16 @@ section {
   .loginPage {
     width: 50%;
   }
-
-  #buttonLogin {
-    padding: 5px 8em !important;
-  }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
   .loginPage {
     width: 50%;
   }
-
-  #buttonLogin {
-    padding: 5px 12em !important;
-  }
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1399px) {
   .loginPage {
     width: 40%;
-  }
-
-  #buttonLogin {
-    padding: 5px 11.1em !important;
   }
 }

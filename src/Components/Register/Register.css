@@ -22,17 +22,9 @@ section {
     0 0 8px rgba(102, 175, 233, 0.6) !important;
 }
 
-.registerButton {
-  margin-top: 20px;
-}
-
-#submitButton {
-  padding: 5px 3.8em !important;
-}
-
-#cancelButton {
-  margin-left: 20px;
-  padding: 5px 3.8em !important;
+.registerButton button {
+  width: 47%;
+  margin: 5px;
 }
 
 .form {
@@ -68,12 +60,9 @@ section {
     width: 80%;
   }
 
-  #submitButton {
-    padding: 5px 2em !important;
-  }
-
-  #cancelButton {
-    padding: 5px 2em !important;
+  .registerButton button {
+    width: 45.5%;
+    margin: 5px;
   }
 }
 
@@ -82,12 +71,9 @@ section {
     width: 60%;
   }
 
-  #submitButton {
-    padding: 5px 3em !important;
-  }
-
-  #cancelButton {
-    padding: 5px 3em !important;
+  .registerButton button {
+    width: 46%;
+    margin: 5px;
   }
 }
 
@@ -96,12 +82,9 @@ section {
     width: 50%;
   }
 
-  #submitButton {
-    padding: 5px 3em !important;
-  }
-
-  #cancelButton {
-    padding: 5px 3em !important;
+  .registerButton button {
+    width: 46.5%;
+    margin: 5px;
   }
 }
 
@@ -110,12 +93,9 @@ section {
     width: 50%;
   }
 
-  #submitButton {
-    padding: 5px 3em !important;
-  }
-
-  #cancelButton {
-    padding: 5px 3em !important;
+  .registerButton button {
+    width: 46.5%;
+    margin: 5px;
   }
 }
 

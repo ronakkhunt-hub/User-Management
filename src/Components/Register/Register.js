@@ -43,6 +43,7 @@ const Register = () => {
                 url: 'auth/register-user',
             }, formData
             );
+            console.log(`register`, register)
             if (register) {
                 toast('Register successfully')
                 setTimeout(() => {
@@ -50,6 +51,7 @@ const Register = () => {
                 }, 5000)
             }
         } catch (err) {
+            toast('Something went wrong')
             console.log(`err`, err)
         }
     }
